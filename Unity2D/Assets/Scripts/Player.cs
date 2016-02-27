@@ -28,6 +28,12 @@ public class Player : MonoBehaviour
     void Movimentacao()
     {
 
+
+        //Verifica se esta no chao
+         estaNoChao = Physics2D.OverlapCircle(chaoVerificador.position, 0.2f, piso);
+       // estaNoChao = Physics2D.Linecast(transform.position, chaoVerificador.position, 1 << LayerMask.NameToLayer("Piso"));
+        animator.SetBool("chao", estaNoChao);
+
         //Seta no paramentro movimento, um valor 0 ou maior que 0. Ira ativar a condicao para mudar de animacao
         animator.SetFloat("movimento", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
 
@@ -45,9 +51,7 @@ public class Player : MonoBehaviour
             transform.eulerAngles = new Vector2(0, 180);
         }
 
-        //Verifica se esta no chao
-        estaNoChao = Physics2D.OverlapCircle(chaoVerificador.position, 0.2f, piso);
-        animator.SetBool("chao", estaNoChao);
+      
 
         //Responsavel pelo pulo
         if (Input.GetButtonDown("Jump") && estaNoChao)
