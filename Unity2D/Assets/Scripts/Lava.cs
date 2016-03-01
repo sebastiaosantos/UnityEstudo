@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Lava : MonoBehaviour {
 
@@ -19,11 +20,14 @@ public class Lava : MonoBehaviour {
 	
 	}
 
+    //
     void OnTriggerEnter2D(Collider2D colisor)
     {
         if (colisor.gameObject.tag == "Player")
         {
-            player.position = new Vector3(0, 0.5f, 0);
+            // esse comando é obsoleto na nova API da unity
+          //  Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene("Jogo");
         }
     }
 }
