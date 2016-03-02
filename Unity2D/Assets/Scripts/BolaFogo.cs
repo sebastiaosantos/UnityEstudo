@@ -25,4 +25,15 @@ public class BolaFogo : MonoBehaviour {
         posicaoY = transform.position.y;
 
     }
+
+    // ao colidir com o player irar causar dano pegando o compomente Vida que é script exclusivo para vida
+    void OnCollisionEnter2D(Collision2D colisor)
+    {
+        if (colisor.gameObject.tag == "Player")
+        {
+            var player = colisor.gameObject.GetComponent<Vida>();
+            player.Damage(10f);
+        }
+        Destroy(gameObject);
+    }
 }

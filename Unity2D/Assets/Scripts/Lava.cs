@@ -20,14 +20,14 @@ public class Lava : MonoBehaviour {
 	
 	}
 
-    //
     void OnTriggerEnter2D(Collider2D colisor)
     {
         if (colisor.gameObject.tag == "Player")
         {
-            // esse comando é obsoleto na nova API da unity
-          //  Application.LoadLevel(Application.loadedLevel);
-            SceneManager.LoadScene("Jogo");
+            var player = colisor.gameObject.GetComponent<Vida>();
+            player.Damage(player.vidaCheia);
         }
     }
+   
+   
 }
